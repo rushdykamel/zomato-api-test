@@ -4,8 +4,7 @@
       <div class="header">category</div>
       <ul>
         <li ng-repeat="category in vm.searchOptions.categories">
-          <label><input type="checkbox" ng-model="category.categories.isSelected"> 
-            {{category.categories.name}}
+          <label><input type="checkbox" ng-model="category.categories.isSelected"> {{category.categories.name}}
           </label>
         </li>
       </ul>
@@ -14,8 +13,7 @@
       <div class="header">cuisine</div>
       <ul>
         <li ng-repeat="cuisine in vm.searchOptions.cuisines">
-          <label><input type="checkbox" ng-model="cuisine.cuisine.isSelected"> 
-            {{cuisine.cuisine.cuisine_name}}
+          <label><input type="checkbox" ng-model="cuisine.cuisine.isSelected"> {{cuisine.cuisine.cuisine_name}}
           </label>
         </li>
       </ul>
@@ -23,31 +21,42 @@
     <div class="option rating">
       <div class="slider">
         <div class="header">rating</div>
-        <rzslider rz-slider-model="vm.searchOptions.rating.minValue" 
-        rz-slider-high="vm.searchOptions.rating.maxValue" 
-        rz-slider-options="vm.searchOptions.rating.options"></rzslider>
+        <rzslider rz-slider-model="vm.searchOptions.rating.minValue" rz-slider-high="vm.searchOptions.rating.maxValue" rz-slider-options="vm.searchOptions.rating.options"></rzslider>
       </div>
       <div class="slider">
         <div class="header">cost</div>
-        <rzslider rz-slider-model="vm.searchOptions.cost.minValue" 
-        rz-slider-high="vm.searchOptions.cost.maxValue" 
-        rz-slider-options="vm.searchOptions.cost.options"></rzslider>
+        <rzslider rz-slider-model="vm.searchOptions.cost.minValue" rz-slider-high="vm.searchOptions.cost.maxValue" rz-slider-options="vm.searchOptions.cost.options"></rzslider>
       </div>
     </div>
-   
+
   </div>
   <div class="results">
-      <div class="list">
-        <ul>
-          <li class="header">RESULTS</li>
-          <li ng-repeat="restaurant in vm.restaurants">{{restaurant.restaurant.name}}</li>
-          <li ng-hide="vm.restaurants.length"><i>No results</i></li>
-        </ul>
-      </div>
-      <div class="details">
-        s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-        has survived not only five
+    <div class="list">
+      <ul>
+        <li class="header">RESULTS</li>
+        <li ng-class="{'selected': restaurant.restaurant.id === vm.selectedRestaurant.id}" ng-repeat="restaurant in vm.restaurants" ng-click="vm.setSelectedRestaurant(restaurant.restaurant)">{{restaurant.restaurant.name}}</li>
+        <li ng-hide="vm.restaurants.length"><i>No results</i></li>
+      </ul>
+    </div>
+    <div class="details">
+      <div ng-if="vm.selectedRestaurant" class="restaurant-container">
+        <div class="featured-image">
+          <img ng-src="{{vm.selectedRestaurant.featured_image}}" alt="{{vm.selectedRestaurant.name}}">
+        </div>
+        <div class="details-container">
+          <div class="restaurant-header">
+            <h1>{{vm.selectedRestaurant.name}}</h1>
+            <p>{{vm.selectedRestaurant.location.address}}</p>
+          </div>
+          <div class="restaurant-options">
+            <p class="available" ng-show="vm.selectedRestaurant.has_table_booking"><i class="fa fa-check"></i> Booking available</p>
+            <p class="not-available" ng-hide="vm.selectedRestaurant.has_table_booking"><i class="fa fa-times"></i> No bookings</p>
+            
+            <p class="available" ng-show="vm.selectedRestaurant.has_online_delivery"><i class="fa fa-check"></i> Delivery available</p>
+            <p class="not-available" ng-hide="vm.selectedRestaurant.has_online_delivery"><i class="fa fa-times"></i> No delivery</p>
+          </div>
+        </div>
       </div>
     </div>
-    </div>
+  </div>
+</div>

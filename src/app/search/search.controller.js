@@ -44,6 +44,10 @@ class SearchController {
     })
   }
 
+  setSelectedRestaurant(restaurant) {
+    this.selectedRestaurant = restaurant;
+  }
+
 }
 
 SearchController.$inject = ['$scope', '$timeout', 'lookupData', 'Zomato.Search.SearchService'];
