@@ -1,0 +1,26 @@
+[
+  {
+    "categories": {
+      "id": 10,
+      "name": "Dinner"
+    }
+  },
+  {
+    "categories": {
+      "id": 5,
+      "name": "Takeaway"
+    }
+  },
+  {
+    "categories": {
+      "id": 1,
+      "name": "Delivery"
+    }
+  },
+  {
+    "categories": {
+      "id": 11,
+      "name": "Pubs & Bars"
+    }
+  }
+]
