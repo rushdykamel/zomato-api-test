@@ -1,0 +1,97 @@
+.search-container {
+  .results {
+    display: flex;
+    height: 72%;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ccc;
+    .list {
+      flex-basis: 300px;
+      background: #e5e5e5;
+      overflow: auto;
+      &::-webkit-scrollbar-track
+      {
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+      }
+
+      &::-webkit-scrollbar
+      {
+        width: 6px;
+        background-color: #F5F5F5;
+      }
+
+      &::-webkit-scrollbar-thumb
+      {
+        background-color: #6b6a6a;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+          &.header {
+            font-weight: bold;
+            text-transform: capitalize;
+            cursor: default;
+          }
+          &.selected {
+            background-color: #50bebf;
+            color: #fff;
+          }
+          border-bottom: 1px solid rgba(0,0,0, 0.3);
+          padding: 10px 0px 10px 50px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .details {
+      flex: 4;
+      padding: 50px;
+      overflow: auto;
+      .restaurant-container {
+        font-size: 1.1em;
+        display: flex;
+        flex-wrap: wrap;
+        .featured-image {
+          height: 300px;
+          width: 300px;
+          background-position: center;
+          background-size: cover;
+        }
+        .details-container {
+          margin-left: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .restaurant-header {
+            h1 {
+              margin: 0;
+            }
+            p {
+              padding: 1px 3px;
+              margin: 0;
+            }
+          }
+          
+          .fa.fa-check {
+            color: #60a034;
+          }
+
+          .fa.fa-times {
+            color: #af2525;
+          }
+
+          .details-header {
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+          }
+          .details-content {
+            font-size: 1.1em;
+          }
+        }
+      }
+    }
+  }
+}
