@@ -29,8 +29,8 @@ class ZomatoApiService {
     return deferred.promise;
   }
 
-  search(categories, cuisines) {
-    const queryString = `entity_id=${this.CITY_ID}&entity_type=city&category=${categories.join(',')}&cuisines=${cuisines.join(',')}`
+  search(categories, cuisines, start, count) {
+    const queryString = `entity_id=${this.CITY_ID}&entity_type=city&category=${categories.join(',')}&cuisines=${cuisines.join(',')}&start=${start}&count=${count}`
     return this.$http.get(`${this.API_URL}search?${queryString}`, this.apiOptions)
   }
 }

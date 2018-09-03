@@ -105,17 +105,19 @@ body {
     .details {
       flex: 4;
       padding: 50px;
+      overflow: auto;
       .restaurant-container {
         font-size: 1.1em;
         display: flex;
         flex-wrap: wrap;
         .featured-image {
-          img {
-            width: 350px;
-          }
+          height: 300px;
+          width: 300px;
+          background-position: center;
+          background-size: cover;
         }
         .details-container {
-          margin-left: 10px;
+          margin-left: 20px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -128,19 +130,22 @@ body {
               margin: 0;
             }
           }
+          
+          .fa.fa-check {
+            color: #60a034;
+          }
 
-          .restaurant-options {
-            p.available {
-              .fa {
-                color: #60a034;
-              }
-            }
+          .fa.fa-times {
+            color: #af2525;
+          }
 
-            p.not-available {
-              .fa {
-                color: #af2525;
-              }
-            }          
+          .details-header {
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+          }
+          .details-content {
+            font-size: 1.1em;
           }
         }
       }

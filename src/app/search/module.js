@@ -22,5 +22,6 @@ searchModule.config(['$stateProvider', $stateProvider => {
 
 searchModule.controller('Zomato.Search.SearchController', SearchController);
 searchModule.service('Zomato.Search.SearchService', SearchService);
+searchModule.constant('PAGE_SIZE', 20);
 
 export default searchModule;

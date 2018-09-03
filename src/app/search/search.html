@@ -35,13 +35,17 @@
       <ul>
         <li class="header">RESULTS</li>
         <li ng-class="{'selected': restaurant.restaurant.id === vm.selectedRestaurant.id}" ng-repeat="restaurant in vm.restaurants" ng-click="vm.setSelectedRestaurant(restaurant.restaurant)">{{restaurant.restaurant.name}}</li>
-        <li ng-hide="vm.restaurants.length"><i>No results</i></li>
+        <li ng-if="vm.isLoading && !vm.restaurants.length"><strong><i class="fa fa-spinner fa-spin"></i></strong></li>
+        <li ng-if="vm.resultMetaData.results_found && vm.resultMetaData.canLoadMore" ng-click="vm.loadMoreResults()">
+          <strong>Load More <i ng-show="vm.isLoading" class="fa fa-spinner fa-spin"></i></strong>
+        </li>
       </ul>
     </div>
     <div class="details">
+      <h2 ng-if="!vm.selectedRestaurant && vm.restaurants.length">Click on a restaurant from the left panel to show details here.</h2>
       <div ng-if="vm.selectedRestaurant" class="restaurant-container">
-        <div class="featured-image">
-          <img ng-src="{{vm.selectedRestaurant.featured_image}}" alt="{{vm.selectedRestaurant.name}}">
+        <div class="featured-image" title="{{vm.selectedRestaurant.name}}"
+        ng-style="{'background-image': 'url(' + vm.selectedRestaurant.featured_image + ')'}">
         </div>
         <div class="details-container">
           <div class="restaurant-header">
@@ -49,12 +53,24 @@
             <p>{{vm.selectedRestaurant.location.address}}</p>
           </div>
           <div class="restaurant-options">
-            <p class="available" ng-show="vm.selectedRestaurant.has_table_booking"><i class="fa fa-check"></i> Booking available</p>
-            <p class="not-available" ng-hide="vm.selectedRestaurant.has_table_booking"><i class="fa fa-times"></i> No bookings</p>
+            <p ng-show="vm.selectedRestaurant.has_table_booking"><i class="fa fa-check"></i> Booking available</p>
+            <p ng-hide="vm.selectedRestaurant.has_table_booking"><i class="fa fa-times"></i> No bookings</p>
             
             <p class="available" ng-show="vm.selectedRestaurant.has_online_delivery"><i class="fa fa-check"></i> Delivery available</p>
             <p class="not-available" ng-hide="vm.selectedRestaurant.has_online_delivery"><i class="fa fa-times"></i> No delivery</p>
           </div>
+          <div>
+            <div class="details-header">cuisine</div>
+            <div class="details-content">{{vm.selectedRestaurant.cuisines}}</div>
+          </div>
+          <div>
+            <div class="details-header">phone number</div>
+            <div class="details-content">{{vm.selectedRestaurant.phone_numbers || 'N/A'}}</div>
+          </div>
+          <div>
+              <div class="details-header">opening hours</div>
+              <div class="details-content">N/A</div>
+            </div>
         </div>
       </div>
     </div>
