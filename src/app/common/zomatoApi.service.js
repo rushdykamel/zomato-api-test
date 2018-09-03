@@ -1,13 +1,14 @@
-import { extend } from 'lodash'
+import { extend } from 'lodash';
 
 class ZomatoApiService {
   constructor($http, API_KEY, API_URL, CITY_ID, $q) {
     extend(this, { $http, API_KEY, API_URL, CITY_ID, $q });
+    
     this.apiOptions = {
       headers: {
         'user-key': this.API_KEY
       }
-    }
+    };
   }
 
   getLookup() {
@@ -30,8 +31,16 @@ class ZomatoApiService {
   }
 
   search(categories, cuisines, start, count) {
-    const queryString = `entity_id=${this.CITY_ID}&entity_type=city&category=${categories.join(',')}&cuisines=${cuisines.join(',')}&start=${start}&count=${count}`
-    return this.$http.get(`${this.API_URL}search?${queryString}`, this.apiOptions)
+    const queryParams = [
+      `entity_id=${this.CITY_ID}`,
+      `entity_type=city`,
+      `category=${categories.join(',')}`,
+      `cuisines=${cuisines.join(',')}`,
+      `start=${start}`,
+      `count=${count}`
+    ];
+
+    return this.$http.get(`${this.API_URL}search?${queryParams.join('&')}`, this.apiOptions)
   }
 }
 

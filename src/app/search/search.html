@@ -33,16 +33,15 @@
   <div class="results">
     <div class="list">
       <ul>
-        <li class="header">RESULTS</li>
+        <li class="header">RESULTS <i ng-if="vm.isLoading" class="fa fa-spinner fa-spin"></i></li>
         <li ng-class="{'selected': restaurant.restaurant.id === vm.selectedRestaurant.id}" ng-repeat="restaurant in vm.restaurants" ng-click="vm.setSelectedRestaurant(restaurant.restaurant)">{{restaurant.restaurant.name}}</li>
-        <li ng-if="vm.isLoading && !vm.restaurants.length"><strong><i class="fa fa-spinner fa-spin"></i></strong></li>
         <li ng-if="vm.resultMetaData.results_found && vm.resultMetaData.canLoadMore" ng-click="vm.loadMoreResults()">
-          <strong>Load More <i ng-show="vm.isLoading" class="fa fa-spinner fa-spin"></i></strong>
+          <strong>Load More <i class="fa fa-caret-down"></i> <i ng-show="vm.isLoading" class="fa fa-spinner fa-spin"></i></strong>
         </li>
       </ul>
     </div>
     <div class="details">
-      <h2 ng-if="!vm.selectedRestaurant && vm.restaurants.length">Click on a restaurant from the left panel to show details here.</h2>
+      <h2 ng-if="!vm.selectedRestaurant && vm.restaurants.length">Click on a restaurant from the left panel to show details.</h2>
       <div ng-if="vm.selectedRestaurant" class="restaurant-container">
         <div class="featured-image" title="{{vm.selectedRestaurant.name}}"
         ng-style="{'background-image': 'url(' + vm.selectedRestaurant.featured_image + ')'}">
