@@ -2,4 +2,4 @@
 
 * Run `npm install` to install app dependencies
 * Run `webpack run server` to start the app
-* Open the browser, navigate to `http://localhost:3000'
+* Open the browser, navigate to http://localhost:3000
